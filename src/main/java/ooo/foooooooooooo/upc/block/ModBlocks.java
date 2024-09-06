@@ -2,6 +2,7 @@ package ooo.foooooooooooo.upc.block;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import ooo.foooooooooooo.upc.Upc;
@@ -15,7 +16,7 @@ public final class ModBlocks {
 
     @SuppressWarnings("SameParameterValue")
     private static void register(String path, Block block) {
-        Registry.register(Registry.BLOCK, Upc.id(path), block);
-        Registry.register(Registry.ITEM, Upc.id(path), new BlockItem(block, new FabricItemSettings().group(Upc.TAB)));
+        Registry.register(BuiltInRegistries.BLOCK, Upc.id(path), block);
+        Registry.register(BuiltInRegistries.ITEM, Upc.id(path), new BlockItem(block, new FabricItemSettings()));
     }
 }

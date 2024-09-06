@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.0-SNAPSHOT'
+    id 'fabric-loom' version '1.7-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -7,9 +7,8 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-    // WTHIT + Megane
     maven {
-        url 'https://maven.bai.lol'
+        url "https://maven.fabricmc.net/"
     }
 	// Modern Industrialization
     maven {
@@ -19,14 +18,24 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
+    // WTHIT + Megane
+    maven {
+        url 'https://maven.bai.lol'
+    }
     maven {
         name 'Jitpack'
         url 'https://jitpack.io'
         content {
             /* For Magna */
-            includeGroup "com.github.Technici4n"
+            includeGroup "com.github.ianm1647"
+            includeGroup "com.github.badasintended"
             includeGroup "com.github.Draylar.omega-config"
         }
+    }
+    // TerraformersMC Maven Repository
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/releases/"
     }
     // required by Magna
     maven {
@@ -37,7 +46,7 @@ repositories {
     }
     maven {
         name = 'Ladysnake Mods'
-        url = 'https://ladysnake.jfrog.io/artifactory/mods'
+        url = 'https://maven.ladysnake.org/releases'
         content {
             includeGroup 'io.github.ladysnake'
             includeGroupByRegex 'io\\.github\\.onyxstudios.*'
@@ -49,8 +58,9 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings() // Sadly due to MI's HackySlot I need to use mojmap
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinExtras_version}")))
 
     include modApi("teamreborn:energy:${project.energy_version}") {
         exclude(group: "net.fabricmc.fabric-api")
@@ -58,6 +68,7 @@ dependencies {
 
     modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${project.wthit_version}") { transitive = false }
     modRuntimeOnly("mcp.mobius.waila:wthit:fabric-${project.wthit_version}") { transitive = false }
+    modRuntimeOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
 
     modImplementation("lol.bai.megane:megane-api:${project.megane_version}") {
         exclude(group: "net.fabricmc.fabric-api")
@@ -78,7 +89,7 @@ dependencies {
 	modImplementation("maven.modrinth:modern-industrialization:${project.mi_version}")
 
     // Required by MI, couldn't run client without this
-    modRuntimeOnly("com.github.Technici4n:magna:${project.magna_version}") {
+    modRuntimeOnly("com.github.ianm1647:magna:${project.magna_version}") {
         exclude(group: "io.github.prospector")
         exclude(group: "me.shedaniel.cloth")
         exclude(group: "net.fabricmc.fabric-api")
