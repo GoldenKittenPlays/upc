@@ -1,0 +1,170 @@
+plugins {
+	id 'fabric-loom' version '1.7-SNAPSHOT'
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Add repositories to retrieve artifacts from in here.
+	// You should only use this when depending on other mods because
+	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
+	// for more information about repositories.
+	maven {
+		url "https://maven.fabricmc.net/"
+	}
+	// Modern Industrialization
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+		content {
+			includeGroup "maven.modrinth"
+		}
+	}
+	// WTHIT + Megane
+	maven {
+		url 'https://maven.bai.lol'
+	}
+	maven {
+		name 'Jitpack'
+		url 'https://jitpack.io'
+		content {
+			/* For Magna */
+			includeGroup "com.github.ianm1647"
+			includeGroup "com.github.badasintended"
+			includeGroup "com.github.Draylar.omega-config"
+		}
+	}
+	// TerraformersMC Maven Repository
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/releases/"
+	}
+	// required by Magna
+	maven {
+		url = "https://maven.jamieswhiteshirt.com/libs-release/"
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
+	}
+	maven {
+		name = 'Ladysnake Mods'
+		url = 'https://maven.ladysnake.org/releases'
+		content {
+			includeGroup 'io.github.ladysnake'
+			includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+		}
+	}
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"upc" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+
+}
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${project.mixinExtras_version}")))
+
+	include modApi("teamreborn:energy:${project.energy_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+
+	modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${project.wthit_version}") { transitive = false }
+	modRuntimeOnly("mcp.mobius.waila:wthit:fabric-${project.wthit_version}") { transitive = false }
+	modRuntimeOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
+
+	modImplementation("lol.bai.megane:megane-api:${project.megane_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+
+	modRuntimeOnly("lol.bai.megane:megane-runtime:${project.megane_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+		exclude(group: "mcp.mobius.waila")
+	}
+
+	modRuntimeOnly("lol.bai.megane:megane-vanilla:${project.megane_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+		exclude(group: "mcp.mobius.waila")
+	}
+
+	modRuntimeOnly("lol.bai:badpackets:fabric-${project.badpackets_version}")
+
+	modImplementation("maven.modrinth:modern-industrialization:${project.mi_version}")
+
+	// Required by MI, couldn't run client without this
+	modRuntimeOnly("com.github.ianm1647:magna:${project.magna_version}") {
+		exclude(group: "io.github.prospector")
+		exclude(group: "me.shedaniel.cloth")
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+	modRuntimeOnly("io.github.ladysnake:PlayerAbilityLib:${project.pal_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 17
+}
+
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${project.base.archivesName.get()}"}
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}
