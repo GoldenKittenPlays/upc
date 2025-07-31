@@ -2,10 +2,10 @@ package ooo.foooooooooooo.upc.blockentity;
 
 import aztech.modern_industrialization.api.energy.EnergyApi;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 import ooo.foooooooooooo.upc.Upc;
 import ooo.foooooooooooo.upc.block.ModBlocks;
 import team.reborn.energy.api.EnergyStorage;
@@ -17,9 +17,9 @@ public final class ModBlockEntities {
         EnergyApi.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity, UPC_BLOCK_ENTITY);
     }
 
-    @SuppressWarnings({ "SameParameterValue"})
+    @SuppressWarnings({ "SameParameterValue", "rawtypes" })
     private static void register(String path, BlockEntityType block) {
-        Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Upc.id(path), block);
+        Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Upc.MOD_ID, path), block);
     }
 
     public static final BlockEntityType<UPCBlockEntity> UPC_BLOCK_ENTITY =

@@ -4,9 +4,9 @@ import aztech.modern_industrialization.api.energy.CableTier;
 import aztech.modern_industrialization.api.energy.MIEnergyStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.util.math.BlockPos;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
 public class UPCBlockEntity extends BlockEntity implements MIEnergyStorage, UPCStorage {
@@ -73,44 +73,6 @@ public class UPCBlockEntity extends BlockEntity implements MIEnergyStorage, UPCS
         }
         return 0;
     }
-
-    /*
-    @Override
-    @SuppressWarnings("UnstableApiUsage")
-    public long extractEnergy(long amount, Simulation simulation) {
-        var transaction = Transaction.openOuter();
-
-        var energy = storage.extract(amount, transaction);
-
-        if (simulation.isSimulating()) {
-            transaction.abort();
-        } else {
-            transaction.commit();
-        }
-
-        transaction.close();
-
-        return energy;
-    }
-
-    @Override
-    @SuppressWarnings("UnstableApiUsage")
-    public long insertEnergy(long amount, Simulation simulation) {
-        var transaction = Transaction.openOuter();
-
-        var energy = storage.insert(amount, transaction);
-
-        if (simulation.isSimulating()) {
-            transaction.abort();
-        } else {
-            transaction.commit();
-        }
-
-        transaction.close();
-
-        return energy;
-    }
-     */
 
     @Override
     public boolean canConnect(CableTier cableTier) {

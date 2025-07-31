@@ -21,15 +21,12 @@
     ]
   },
   "depends": {
-    "fabricloader": "*",
-    "fabric": "*",
-    "minecraft": "1.20.x",
-    "team_reborn_energy": ">=2.2.0",
-    "modern_industrialization": ">=1.3.2"
-  },
-  "custom": {
-    "megane:modules": [
-      "ooo.foooooooooooo.upc.compat.megane.UPCMeganeModule"
-    ]
+      "minecraft": "~1.20.1",
+      "java": ">=21",
+      "fabric": ">=0.87.0",
+      "fabric-api": "*",
+      "fabricloader": "*",
+      "team_reborn_energy": ">=3.0.0",
+      "modern_industrialization": ">=1.3.2"
   }
 }
