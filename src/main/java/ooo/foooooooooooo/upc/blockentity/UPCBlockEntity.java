@@ -19,59 +19,13 @@ public class UPCBlockEntity extends BlockEntity implements MIEnergyStorage, UPCS
     @Override
     @SuppressWarnings("UnstableApiUsage")
     public long extract(long maxAmount, TransactionContext transaction) {
-        try {
-            Transaction tAction = transaction.openNested();
-            var energy = storage.extract(maxAmount, transaction);
-            transaction.addCloseCallback((context, result) -> {
-                if (result.wasAborted()) {
-                    // Treat as a simulation
-                    System.out.println("Transaction was simulated and aborted.");
-                    tAction.abort();
-                } else if (result.wasCommitted()) {
-                    // Treat as a real operation
-                    System.out.println("Transaction was committed.");
-                    tAction.commit();
-                }
-            });
-
-            tAction.close();
-
-            return energy;
-        } catch (Exception e) {
-            System.out.println("Transaction encountered error: " + e);
-        }
-        return 0;
+        return storage.extract(maxAmount, transaction);
     }
 
     @Override
     @SuppressWarnings("UnstableApiUsage")
     public long insert(long maxAmount, TransactionContext transaction) {
-        try {
-            Transaction tAction;
-            tAction = Transaction.openOuter();
-
-            long energy;
-            energy = storage.insert(maxAmount, transaction);
-            transaction.addCloseCallback((context, result) -> {
-                if (result.wasAborted()) {
-                    // Treat as a simulation
-                    System.out.println("Transaction was simulated and aborted.");
-                    tAction.abort();
-                } else if (result.wasCommitted()) {
-                    // Treat as a real operation
-                    System.out.println("Transaction was committed.");
-                    tAction.commit();
-                }
-            });
-
-            tAction.close();
-
-            return energy;
-        }
-        catch(Exception e) {
-            System.out.println("Transaction encountered error: " + e);
-        }
-        return 0;
+        return storage.insert(maxAmount, transaction);
     }
 
     @Override

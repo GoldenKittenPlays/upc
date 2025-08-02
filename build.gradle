@@ -6,19 +6,20 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
-configurations.named("modImplementation").configure {
+configurations.configureEach {
     resolutionStrategy.eachDependency { details ->
         if (details.requested.group == "com.github.Draylar.omega-config") {
             details.useTarget("dev.draylar.omega-config:omega-config-base:1.4.0+1.20.1")
-            details.because("Force override omega-config for Magna")
+            details.because("Override legacy omega-config from JitPack to modern release")
         }
         if (details.requested.group == "com.jamieswhiteshirt"
-        && details.requested.name == "reach-entity-attributes") {
+            && details.requested.name == "reach-entity-attributes") {
             details.useTarget("com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}")
             details.because("Force override reach entity attributes")
         }
     }
 }
+
 
 repositories {
     // Fabric
@@ -53,12 +54,13 @@ repositories {
 
     // Shedaniel (e.g. Cloth Config, Architectury)
     maven {
-        url "https://maven.shedaniel.me"
-        //content {
-        //    includeGroup "me.shedaniel"
-        //    includeGroup "me.shedaniel.cloth"
-        //    includeGroup "dev.architectury"
-        //}
+        name "REI"
+        url "https://maven.shedaniel.me/"
+        content {
+            includeGroup "me.shedaniel"
+            includeGroup "me.shedaniel.cloth"
+            includeGroup "dev.architectury"
+        }
     }
 
     // Terraformers (e.g. ModMenu, EMI)
@@ -86,6 +88,10 @@ repositories {
             includeGroup 'io.github.ladysnake'
             includeGroupByRegex 'io\\.github\\.onyxstudios.*'
         }
+    }
+
+    maven {
+        url "https://maven.draylar.dev/releases"
     }
 
     // Jitpack (e.g. Omega Config, Magna)
@@ -117,6 +123,8 @@ dependencies {
         exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
 
+    modImplementation("dev.draylar.omega-config:omega-config-base:1.4.0+1.20.1")
+
     // dev modmenu
     modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
         exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
@@ -128,14 +136,17 @@ dependencies {
     modApi("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") {
         //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
+    modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") {
+        //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
 
     // Megane
     modImplementation("lol.bai.megane:megane-api:${project.megane_version}") {
         exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
-    modRuntimeOnly("lol.bai.megane:megane-runtime:${project.megane_version}") {
-        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
-    }
+    //modRuntimeOnly("lol.bai.megane:megane-runtime:${project.megane_version}") {
+        //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    //}
 
     // Bad Packets
     modRuntimeOnly("lol.bai:badpackets:fabric-${project.badpackets_version}") {
@@ -163,8 +174,11 @@ dependencies {
     }
 
     // Magna 1.6.2-1.17
-    include modImplementation("com.github.Draylar:magna:1.6.2-1.17") {
-        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    modImplementation("dev.draylar:magna:${project.magna_version}") {
+        exclude(group: "io.github.prospector")
+        exclude(group: "me.shedaniel.cloth")
+        exclude(group: "net.fabricmc.fabric-api")
+        exclude group: 'com.github.Draylar.omega-config', module: 'omega-config-base'
     }
 
     // Reborn Energy
@@ -172,6 +186,8 @@ dependencies {
         exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
         exclude group: "net.fabricmc", module: "fabric-loader"
     }
+    modImplementation "curse.maven:reborncore-237903:4708961"
+    modImplementation "curse.maven:techreborn-233564:4708962"
 
     // Athena
     //modImplementation("earth.terrarium.athena:athena-fabric-${project.minecraft_version}:${project.athena_version}") {
