@@ -20,7 +20,8 @@
       "ooo.foooooooooooo.upc.Upc"
     ]
   },
-  "depends": {
+    "accessWidener": "upc.accessWidener",
+    "depends": {
       "minecraft": "~1.20.1",
       "java": ">=21",
       "fabric": ">=0.87.0",

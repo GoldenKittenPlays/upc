@@ -107,6 +107,7 @@ dependencies {
     //modApi include("com.github.Draylar:omega-config:${project.omega_config_version}") {
     //    transitive = false
     //}
+    modApi "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
     // Megane
     modImplementation "lol.bai.megane:megane-api:${project.megane_version}"
@@ -173,8 +174,8 @@ java {
     }
     archivesBaseName = project.archives_base_name
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
