@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.10-SNAPSHOT'
+    id 'fabric-loom' version "${loom_version}"
     id 'maven-publish'
 }
 
@@ -12,12 +12,24 @@ configurations.named("modImplementation").configure {
             details.useTarget("dev.draylar.omega-config:omega-config-base:1.4.0+1.20.1")
             details.because("Force override omega-config for Magna")
         }
+        if (details.requested.group == "com.jamieswhiteshirt"
+        && details.requested.name == "reach-entity-attributes") {
+            details.useTarget("com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}")
+            details.because("Force override reach entity attributes")
+        }
     }
 }
 
 repositories {
     // Fabric
     maven { url "https://maven.fabricmc.net/" }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
 
     // Modrinth (e.g. Modern Industrialization)
     maven {
@@ -97,57 +109,79 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // Omega Config
-    include("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}")
+    include("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
+
     modImplementation("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
 
     // dev modmenu
-    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
+
     //modApi include("com.github.Draylar:omega-config:${project.omega_config_version}") {
     //    transitive = false
     //}
-    modApi "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+    modApi("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") {
+        //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
 
     // Megane
-    modImplementation "lol.bai.megane:megane-api:${project.megane_version}"
-    modRuntimeOnly "lol.bai.megane:megane-runtime:${project.megane_version}"
+    modImplementation("lol.bai.megane:megane-api:${project.megane_version}") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
+    modRuntimeOnly("lol.bai.megane:megane-runtime:${project.megane_version}") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
 
     // Bad Packets
-    modRuntimeOnly "lol.bai:badpackets:fabric-${project.badpackets_version}"
+    modRuntimeOnly("lol.bai:badpackets:fabric-${project.badpackets_version}") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
 
     // Modern Industrialization
-    modImplementation("maven.modrinth:modern-industrialization:${project.mi_version}")
+    modImplementation("maven.modrinth:modern-industrialization:${project.mi_version}") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
 
     // Player Ability Lib
     modRuntimeOnly("io.github.ladysnake:PlayerAbilityLib:${project.pal_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
 
     // WTHIT
-    modImplementation "curse.maven:wthit-440979:5073536"
+    modImplementation("curse.maven:wthit-440979:5073536") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
 
     // Mod Menu
     modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
 
-    // Magna
-    include modImplementation('com.github.Draylar:magna:1.6.2-1.17') {
-        exclude(group: "net.fabricmc.fabric-api")
+    // Magna 1.6.2-1.17
+    include modImplementation("com.github.Draylar:magna:1.6.2-1.17") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
 
     // Reborn Energy
     include modApi("teamreborn:energy:${project.energy_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
         exclude group: "net.fabricmc", module: "fabric-loader"
     }
 
     // Athena
-    //modImplementation "earth.terrarium.athena:athena-fabric-${project.minecraft_version}:${project.athena_version}"
+    //modImplementation("earth.terrarium.athena:athena-fabric-${project.minecraft_version}:${project.athena_version}") {
+        //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    //}
 
     // dev Reach Entity Attributes for testing tools with extended reach (or players)
-    modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}"
+    modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}") {
+        exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    }
 }
 
 processResources {
