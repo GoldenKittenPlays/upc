@@ -9,6 +9,7 @@ public class Upc implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ModBlocks.registerItemGroup();
         ModBlocks.registerBlocks();
         ModBlockEntities.registerBlockEntities();
     }

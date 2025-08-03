@@ -2,6 +2,7 @@ package ooo.foooooooooooo.upc.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
@@ -22,6 +23,11 @@ public class UPCBlock extends BlockWithEntity {
     public UPCBlock() {
         //AbstractBlock.Settings.create().sounds(BlockSoundGroup.METAL)
         super(FabricBlockSettings.create().sounds(BlockSoundGroup.METAL));
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Override
