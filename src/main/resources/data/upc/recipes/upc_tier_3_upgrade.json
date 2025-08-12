@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I#",
+        "IRI",
+        "#I#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:redstone"
+        },
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "R": {
+            "item": "upc:upc_tier_2_upgrade"
+        }
+    },
+    "result": {
+        "item": "upc:upc_tier_3_upgrade",
+        "count": 1
+    },
+    "group": "goldenkitten"
+}

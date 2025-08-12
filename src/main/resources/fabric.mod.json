@@ -8,22 +8,21 @@
     "fooooooooooooooo, GoldenKitten"
   ],
   "contact": {
-    "homepage": "https://github.com/fooooooooooooooo/upc#readme",
-    "sources": "https://github.com/fooooooooooooooo/upc",
-    "issues": "https://github.com/fooooooooooooooo/upc/issues"
+    "homepage": "https://github.com/goldenkittenplays/upc#readme",
+    "sources": "https://github.com/goldenkittenplays/upc",
+    "issues": "https://github.com/goldenkittenplays/upc/issues"
   },
   "license": "MIT",
   "icon": "assets/upc/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "ooo.foooooooooooo.upc.Upc"
+      "me.goldenkitten.upc.Upc"
     ]
   },
-    "accessWidener": "upc.accessWidener",
     "depends": {
       "minecraft": "~1.20.1",
-      "java": ">=21",
+      "java": ">=17",
       "fabric": ">=0.87.0",
       "fabric-api": "*",
       "fabricloader": "*",

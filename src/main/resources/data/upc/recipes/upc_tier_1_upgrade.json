@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#I#",
+        "IRI",
+        "#I#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:cobblestone"
+        },
+        "I": {
+            "item": "minecraft:iron_nugget"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        }
+    },
+    "result": {
+        "item": "upc:upc_tier_1_upgrade",
+        "count": 1
+    },
+    "group": "goldenkitten"
+}

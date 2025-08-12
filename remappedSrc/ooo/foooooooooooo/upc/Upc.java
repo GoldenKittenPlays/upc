@@ -1,8 +1,8 @@
-package ooo.foooooooooooo.upc;
+package me.goldenkitten.upc;
 
 import net.fabricmc.api.ModInitializer;
-import ooo.foooooooooooo.upc.block.ModBlocks;
-import ooo.foooooooooooo.upc.blockentity.ModBlockEntities;
+import me.goldenkitten.upc.block.ModBlocks;
+import me.goldenkitten.upc.blockentity.ModBlockEntities;
 
 public class Upc implements ModInitializer {
     public static final String MOD_ID = "upc";

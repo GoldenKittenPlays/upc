@@ -1,8 +1,9 @@
-package ooo.foooooooooooo.upc;
+package me.goldenkitten.upc;
 
+import me.goldenkitten.upc.item.ModItems;
 import net.fabricmc.api.ModInitializer;
-import ooo.foooooooooooo.upc.block.ModBlocks;
-import ooo.foooooooooooo.upc.blockentity.ModBlockEntities;
+import me.goldenkitten.upc.block.ModBlocks;
+import me.goldenkitten.upc.blockentity.ModBlockEntities;
 
 public class Upc implements ModInitializer {
     public static final String MOD_ID = "upc";
@@ -10,6 +11,7 @@ public class Upc implements ModInitializer {
     @Override
     public void onInitialize() {
         ModBlocks.registerItemGroup();
+        ModItems.initialize();
         ModBlocks.registerBlocks();
         ModBlockEntities.registerBlockEntities();
     }

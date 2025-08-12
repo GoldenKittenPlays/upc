@@ -1,4 +1,4 @@
-package ooo.foooooooooooo.upc.block;
+package me.goldenkitten.upc.block;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -12,7 +12,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import ooo.foooooooooooo.upc.Upc;
+import me.goldenkitten.upc.Upc;
 
 public final class ModBlocks {
     public static final Block UPC_BLOCK = new UPCBlock();

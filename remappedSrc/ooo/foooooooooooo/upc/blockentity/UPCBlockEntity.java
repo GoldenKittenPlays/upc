@@ -1,4 +1,4 @@
-package ooo.foooooooooooo.upc.blockentity;
+package me.goldenkitten.upc.blockentity;
 
 import aztech.modern_industrialization.api.energy.CableTier;
 import aztech.modern_industrialization.api.energy.MIEnergyStorage;

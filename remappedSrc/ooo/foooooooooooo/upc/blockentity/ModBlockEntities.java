@@ -1,4 +1,4 @@
-package ooo.foooooooooooo.upc.blockentity;
+package me.goldenkitten.upc.blockentity;
 
 import aztech.modern_industrialization.api.energy.EnergyApi;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -6,8 +6,8 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import ooo.foooooooooooo.upc.Upc;
-import ooo.foooooooooooo.upc.block.ModBlocks;
+import me.goldenkitten.upc.Upc;
+import me.goldenkitten.upc.block.ModBlocks;
 import team.reborn.energy.api.EnergyStorage;
 
 public final class ModBlockEntities {

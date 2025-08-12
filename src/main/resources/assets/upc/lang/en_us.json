@@ -1,4 +1,15 @@
 {
     "block.upc.upc": "UPC",
-    "itemGroup.upc": "UPC"
+    "itemGroup.upc": "UPC",
+    "item.upc.upc_tier_1_upgrade": "Upc Upgrade 1",
+    "item.upc.upc_tier_2_upgrade": "Upc Upgrade 2",
+    "item.upc.upc_tier_3_upgrade": "Upc Upgrade 3",
+    "item.upc.upc_tier_4_upgrade": "Upc Upgrade 4",
+    "item.upc.upc_tier_5_upgrade": "Upc Upgrade 5",
+    "item.upc.upc_tier_6_upgrade": "Upc Upgrade 6",
+    "item.upc.upc_tier_7_upgrade": "Upc Upgrade 7",
+    "item.upc.upc_tier_8_upgrade": "Upc Upgrade 8",
+    "item.upc.upc_tier_9_upgrade": "Upc Upgrade 9",
+    "item.upc.upc_tier_10_upgrade": "Upc Upgrade 10",
+    "item.upc.upc_tier_creative_upgrade": "Upc Upgrade Creative"
 }

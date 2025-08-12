@@ -20,7 +20,6 @@ configurations.configureEach {
     }
 }
 
-
 repositories {
     // Fabric
     maven { url "https://maven.fabricmc.net/" }
@@ -209,7 +208,7 @@ processResources {
     }
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 17
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
@@ -224,8 +223,8 @@ java {
     }
     archivesBaseName = project.archives_base_name
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
