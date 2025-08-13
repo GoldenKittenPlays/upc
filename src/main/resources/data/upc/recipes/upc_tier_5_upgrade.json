@@ -1,19 +1,25 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "#I#",
-        "IRI",
-        "#I#"
+        "#N#",
+        "RDR",
+        "#g#"
     ],
     "key": {
         "#": {
-            "item": "minecraft:redstone_block"
+            "item": "minecraft:netherite_scrap"
         },
-        "I": {
-            "item": "minecraft:gold_ingot"
+        "N": {
+            "item": "minecraft:netherite_upgrade_smithing_template"
         },
         "R": {
             "item": "upc:upc_tier_4_upgrade"
+        },
+        "D": {
+            "item": "minecraft:redstone_block"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
         }
     },
     "result": {

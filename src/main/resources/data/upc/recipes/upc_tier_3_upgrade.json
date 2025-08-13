@@ -7,10 +7,10 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:redstone"
+            "item": "minecraft:redstone_block"
         },
         "I": {
-            "item": "minecraft:iron_ingot"
+            "item": "minecraft:gold_ingot"
         },
         "R": {
             "item": "upc:upc_tier_2_upgrade"

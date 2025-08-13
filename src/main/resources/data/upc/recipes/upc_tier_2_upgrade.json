@@ -7,13 +7,13 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:stone"
+            "item": "minecraft:redstone_block"
         },
         "I": {
-            "item": "minecraft:iron_bars"
+            "tag": "c:iron_ingots"
         },
         "R": {
-            "item": "minecraft:redstone"
+            "item": "upc:upc_tier_1_upgrade"
         }
     },
     "result": {

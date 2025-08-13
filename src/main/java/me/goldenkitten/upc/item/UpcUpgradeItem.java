@@ -1,10 +1,19 @@
 package me.goldenkitten.upc.item;
 
+import me.goldenkitten.upc.Upc;
 import me.goldenkitten.upc.blockentity.UPCBlockEntity;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class UpcUpgradeItem extends Item {
     private int tier;
@@ -87,5 +96,26 @@ public class UpcUpgradeItem extends Item {
             }
         }
         return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        String itemName = stack.getItem().getName().getString();
+        try {
+            String tier = itemName.split("Upc Upgrade ")[1].toLowerCase();
+            if (tier.equalsIgnoreCase("creative")) {
+                tooltip.add(Text.translatable("itemTooltip." + Upc.MOD_ID + ".upc_tier_" + tier + "_upgrade").formatted(Formatting.GOLD));
+            }
+            else {
+                int itemTier = Integer.parseInt(tier);
+                String[] text = Text.translatable("itemTooltip." + Upc.MOD_ID + ".upc_tier_" + itemTier + "_upgrade").getString().split("\n");
+                for(String t : text) {
+                    tooltip.add(Text.literal(t).formatted(Formatting.GOLD));
+                }
+            }
+        }
+        catch(NumberFormatException e) {
+            System.err.println("Could not parse tier from item name: " + itemName);
+        }
     }
 }
