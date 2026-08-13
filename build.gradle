@@ -8,10 +8,6 @@ group = project.maven_group
 
 configurations.configureEach {
     resolutionStrategy.eachDependency { details ->
-        if (details.requested.group == "com.github.Draylar.omega-config") {
-            details.useTarget("dev.draylar.omega-config:omega-config-base:1.4.0+1.20.1")
-            details.because("Override legacy omega-config from JitPack to modern release")
-        }
         if (details.requested.group == "com.jamieswhiteshirt"
             && details.requested.name == "reach-entity-attributes") {
             details.useTarget("com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}")
@@ -90,11 +86,9 @@ repositories {
     }
 
     maven {
-        url "https://maven.draylar.dev/releases"
+        name = "Craftation"
+        url = "https://repo.craftationgaming.com/other"
     }
-
-    // Jitpack (e.g. Omega Config, Magna)
-    maven { url 'https://jitpack.io' }
 
     // Resourceful (e.g. Athena)
     maven {
@@ -122,7 +116,7 @@ dependencies {
         exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
 
-    modImplementation("dev.draylar.omega-config:omega-config-base:1.4.0+1.20.1")
+    modImplementation("dev.draylar.omega-config:omega-config-base:${omega_config_version}")
 
     // dev modmenu
     modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
@@ -144,7 +138,7 @@ dependencies {
         exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     }
     //modRuntimeOnly("lol.bai.megane:megane-runtime:${project.megane_version}") {
-        //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     //}
 
     // Bad Packets
@@ -190,7 +184,7 @@ dependencies {
 
     // Athena
     //modImplementation("earth.terrarium.athena:athena-fabric-${project.minecraft_version}:${project.athena_version}") {
-        //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
+    //exclude group: 'net.fabricmc.fabric-api', module: 'fabric-item-group-api-v1'
     //}
 
     // dev Reach Entity Attributes for testing tools with extended reach (or players)
