@@ -1,25 +1,20 @@
+# UPC
 
-Installation information
-=======
+Adds a block to convert between Tech Reborn and Modern Industrialization energy
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+### Usage
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+![usage](images/usage.png)
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+Converts between TR energy and MI energy both ways with 1:1 ratio.
+Simply Tech Reborn cables are used to extract energy and import it
+into the UPC, while Modern Industrialization cables will be used to
+extract energy from the UPC into any energy storage. Can import
+energy into some machines, but it is recommended to put it into
+any energy storage.
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+### Recipe
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+![recipe](images/recipe.png)
+
+Substitute iron ingot with any c:iron_ingots and copper ingot with any c:copper_ingots
