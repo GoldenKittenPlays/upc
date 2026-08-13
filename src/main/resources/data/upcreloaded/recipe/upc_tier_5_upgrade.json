@@ -1,0 +1,31 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+        "#N#",
+        "RDR",
+        "#g#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:netherite_scrap"
+        },
+        "N": {
+            "item": "minecraft:netherite_upgrade_smithing_template"
+        },
+        "R": {
+            "item": "upcreloaded:upc_tier_4_upgrade"
+        },
+        "D": {
+            "item": "minecraft:redstone_block"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result": {
+        "id": "upcreloaded:upc_tier_5_upgrade",
+        "count": 1
+    },
+    "group": "goldenkitten"
+}

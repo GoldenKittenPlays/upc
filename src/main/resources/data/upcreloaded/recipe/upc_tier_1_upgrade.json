@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+        "#I#",
+        "IRI",
+        "#I#"
+    ],
+    "key": {
+        "#": {"item":"minecraft:redstone"},
+        "I": {"item":"minecraft:iron_ingot"},
+        "R": {"item":"minecraft:copper_ingot"}
+    },
+    "result": {
+        "id": "upcreloaded:upc_tier_1_upgrade",
+        "count": 1
+    },
+    "group": "goldenkitten"
+}

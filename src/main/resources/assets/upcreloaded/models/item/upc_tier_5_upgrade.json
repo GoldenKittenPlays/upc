@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "upcreloaded:item/upc_tier_5_upgrade"
+    }
+}
